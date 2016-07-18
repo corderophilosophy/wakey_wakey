@@ -7,14 +7,13 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Switch from './Components/HomeSwitch';
+import Main from './Components/Main';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Switch />
-        <Switch />
+        <Main/>
       </View>
     );
   }
