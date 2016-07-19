@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 
 class Alarms extends Component {
+  _onPressButton() {
+    // this will route to the Alarms ListView
+  }
   render() {
     return (
     <TouchableNativeFeedback
