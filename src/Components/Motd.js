@@ -34,8 +34,8 @@ class Motd extends Component {
       onPress={this._onPressButton.bind(this)}
       background={TouchableNativeFeedback.SelectableBackground()}>
       <View style={styles.motd_container}>
-        <Text>{this.state.motd.quote}</Text>
-        <Text>{this.state.motd.source}</Text>
+        <Text style={styles.motd_quote}>{this.state.motd.quote}</Text>
+        <Text style={styles.motd_source}>{this.state.motd.source}</Text>
       </View>
     </TouchableNativeFeedback>
     );
@@ -49,8 +49,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopColor: '#333',
     borderTopWidth: 5,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  motd_quote: {
+    fontFamily: 'sans-serif',
+    textAlign: 'center',
+    marginHorizontal: 30,
+    paddingBottom: 10,
+    fontSize: 16,
+    color: '#000',
+  },
+  motd_source: {
+    color: '#000',
+    fontStyle: 'italic',
   },
 });
 module.exports = Motd;
