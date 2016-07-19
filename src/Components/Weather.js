@@ -14,18 +14,18 @@ class Weather extends Component {
         <Text>I'm the Weather component</Text>
       </View>
       );
-    }
   }
+}
 
-  const styles = StyleSheet.create({
-    weather_container: {
-      flex: 2,
-      backgroundColor: 'pink',
-      borderTopColor: '#333',
-      borderTopWidth: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
-  });
+const styles = StyleSheet.create({
+  weather_container: {
+    flex: 2,
+    backgroundColor: 'pink',
+    borderTopColor: '#333',
+    borderTopWidth: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
 
 module.exports = Weather;

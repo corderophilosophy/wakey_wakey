@@ -27,7 +27,7 @@ export default class App extends Component {
       //     }
       //     return Navigator.SceneConfigs.FloatFromRight;
       //   }} />
-    )
+    );
   }
   // renderScene(route, navigator) {
   //   var routeId = route.id;
@@ -46,9 +46,9 @@ export default class App extends Component {
   // }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#000000',
+//   },
+// });

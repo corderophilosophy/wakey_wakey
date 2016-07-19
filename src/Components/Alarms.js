@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  TouchableNativeFeedback,
   Text,
   StyleSheet,
 } from 'react-native';
@@ -10,10 +11,14 @@ import {
 class Alarms extends Component {
   render() {
     return (
-    <View style={styles.alarm_container}>
-      <Text style={styles.alarm_text}>Alarms</Text>
-      <Text style={styles.alarm_arrow}>></Text>
-    </View>
+    <TouchableNativeFeedback
+      onPress={this._onPressButton}
+      background={TouchableNativeFeedback.SelectableBackground()}>
+      <View style={styles.alarm_container}>
+        <Text style={styles.alarm_text}>Alarms</Text>
+        <Text style={styles.alarm_arrow}>></Text>
+      </View>
+    </TouchableNativeFeedback>
     );
   }
 }
@@ -34,6 +39,6 @@ const styles = StyleSheet.create({
     marginRight: 50,
     fontSize: 60,
   },
-  });
+});
 
 module.exports = Alarms;
