@@ -11,11 +11,12 @@ import Happy from '../Data/_motd.js';
 
 class Motd extends Component {
   constructor(props) {
+    var message = Happy.random();
     super(props);
     this.state = {
       motd: {
-        quote: '',
-        source: '',
+        quote: message.quote,
+        source: message.source,
       }
     };
   }
@@ -30,20 +31,25 @@ class Motd extends Component {
   }
   render() {
     return (
-    <TouchableNativeFeedback
-      onPress={this._onPressButton.bind(this)}
-      background={TouchableNativeFeedback.SelectableBackground()}>
       <View style={styles.motd_container}>
-        <Text style={styles.motd_quote}>{this.state.motd.quote}</Text>
-        <Text style={styles.motd_source}>{this.state.motd.source}</Text>
+        <TouchableNativeFeedback
+          onPress={this._onPressButton.bind(this)}
+          background={TouchableNativeFeedback.SelectableBackground()}>
+          <View style={styles.motd_body}>
+            <Text style={styles.motd_quote}>{this.state.motd.quote}</Text>
+            <Text style={styles.motd_source}>{this.state.motd.source}</Text>
+          </View>
+        </TouchableNativeFeedback>
       </View>
-    </TouchableNativeFeedback>
     );
   }
-  }
+}
 
 const styles = StyleSheet.create({
   motd_container: {
+    flex: 1,
+  },
+  motd_body: {
     flex: 1,
     backgroundColor: 'honeydew',
     alignItems: 'center',
