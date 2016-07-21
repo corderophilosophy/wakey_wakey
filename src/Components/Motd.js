@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
   },
   motd_body: {
     flex: 1,
-    backgroundColor: 'honeydew',
+    backgroundColor: 'skyblue',
     alignItems: 'center',
-    borderTopColor: '#333',
+    borderTopColor: '#343434',
     borderTopWidth: 5,
     justifyContent: 'center',
     flexDirection: 'column',
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     paddingBottom: 10,
     fontSize: 16,
+    fontWeight: 'bold',
     color: '#000',
   },
   motd_source: {
