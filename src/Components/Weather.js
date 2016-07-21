@@ -13,11 +13,32 @@ class Weather extends Component {
     super(props);
     this.state = {
       weather: {
-        currentTemp: 0,
-        humidity: 0,
-        image: null,
-      },
-      lastUpdate: '',
+        day_1: {
+          currentTemp: 88,
+          humidity: 88,
+          icon: 'icon-day-cloudy',
+        },
+        day_2: {
+          currentTemp: 88,
+          humidity: 88,
+          icon: 'day-rain',
+        },
+        day_3: {
+          currentTemp: 88,
+          humidity: 88,
+          icon: 'hurricane',
+        },
+        day_4: {
+          currentTemp: 88,
+          humidity: 88,
+          icon: 'day-storm',
+        },
+        day_5: {
+          currentTemp: 88,
+          humidity: 88,
+          icon: 'night-hail',
+        },
+      }
     };
   }
 // This should render the 5-day forecast
@@ -25,7 +46,31 @@ class Weather extends Component {
     return (
       <View style={styles.weather_view}>
         <View style={styles.widget_box}>
-          <Widget temperature={this.state.weather.currentTemp} />
+          <Widget
+            temperature={this.state.weather.day_1.currentTemp}
+            humidty={this.state.weather.day_1.humidity}
+            icon={this.state.weather.day_1.icon}
+             />
+          <Widget
+            temperature={this.state.weather.day_2.currentTemp}
+            humidty={this.state.weather.day_2.humidity}
+            icon={this.state.weather.day_2.icon}
+             />
+          <Widget
+            temperature={this.state.weather.day_3.currentTemp}
+            humidty={this.state.weather.day_3.humidity}
+            icon={this.state.weather.day_3.icon}
+             />
+          <Widget
+            temperature={this.state.weather.day_4.currentTemp}
+            humidty={this.state.weather.day_4.humidity}
+            icon={this.state.weather.day_4.icon}
+             />
+          <Widget
+            temperature={this.state.weather.day_5.currentTemp}
+            humidty={this.state.weather.day_5.humidity}
+            icon={this.state.weather.day_5.icon}
+             />
         </View>
         <Text style={styles.update_text}>Update available every 2 hours</Text>
         <Text style={styles.update_text}>Last update was at: </Text>

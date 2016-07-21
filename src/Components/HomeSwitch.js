@@ -25,9 +25,6 @@ export default class HomeSwitch extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   switch: {
     padding: 30
   }
