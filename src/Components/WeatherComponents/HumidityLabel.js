@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#000',
+    textDecorationLine: 'underline',
   },
 });
 
