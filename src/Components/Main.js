@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 
 
 
@@ -26,16 +26,17 @@ export default class Main extends Component {
         <TouchableNativeFeedback
           onPress={this._onPressButton.bind(this)}
           background={TouchableNativeFeedback.SelectableBackground()}>
-          <View style={styles.alarm_container}>
-            <Text style={styles.alarm_text}>Alarms</Text>
-            <Text style={styles.alarm_arrow}>
-              <Icon name="chevron-right" size={50} color="#000" />
+          <View style={styles.alarmContainer}>
+            <Text style={styles.alarmText}>Alarms</Text>
+            <Text style={styles.alarmArrow}>
+              <Icon name="forward" size={50} color="#000" />
             </Text>
           </View>
         </TouchableNativeFeedback>
-        <Motd />
-        <Weather />
-
+        <View style={styles.mwContainer}>
+          <Motd />
+          <Weather />
+        </View>
       </View>
     );
   }
@@ -44,23 +45,29 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'yellow',
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'stretch',
   },
-  alarm_container: {
+  alarmContainer: {
     flex: 1,
-    backgroundColor: 'skyblue',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flexDirection: 'row',
+    backgroundColor: 'dodgerblue',
   },
-  alarm_text: {
+  mwContainer: {
+    flex: 3,
+  },
+  alarmText: {
+    fontSize: 60,
+    fontWeight: 'bold',
+    color: '#343434',
     marginLeft: 50,
-    fontSize: 60,
   },
-  alarm_arrow: {
+  alarmArrow: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#343434',
     marginRight: 50,
-    fontSize: 60,
   },
 });

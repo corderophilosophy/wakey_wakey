@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-class MyComponent extends Component {
+class HumidityBar extends Component {
   render() {
     return (
       <View style={styles.humidityBarContainer}>
@@ -23,9 +23,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(164, 217, 244)',
   },
   humidtyBarText: {
+    textAlign: 'center',
     fontSize: 18,
     color: '#F7FFF7',
   },
 });
 
-module.exports = MyComponent;
+module.exports = HumidityBar;

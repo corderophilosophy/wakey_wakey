@@ -31,45 +31,38 @@ class Motd extends Component {
   }
   render() {
     return (
-      <View style={styles.motd_container}>
-        <TouchableNativeFeedback
-          onPress={this._onPressButton.bind(this)}
-          background={TouchableNativeFeedback.SelectableBackground()}>
-          <View style={styles.motd_body}>
-            <Text style={styles.motd_quote}>{this.state.motd.quote}</Text>
-            <Text style={styles.motd_source}>{this.state.motd.source}</Text>
-          </View>
-        </TouchableNativeFeedback>
-      </View>
+      <TouchableNativeFeedback
+        onPress={this._onPressButton.bind(this)}
+        background={TouchableNativeFeedback.SelectableBackground()}>
+        <View style={styles.motdContainer}>
+          <Text style={styles.motdQuote}>{this.state.motd.quote}</Text>
+          <Text style={styles.motdSource}>{this.state.motd.source}</Text>
+        </View>
+      </TouchableNativeFeedback>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  motd_container: {
-    flex: 1,
-  },
-  motd_body: {
-    flex: 1,
-    backgroundColor: 'skyblue',
+  motdContainer: {
+    flex: 2,
+    backgroundColor: 'dodgerblue',
     alignItems: 'center',
-    borderTopColor: '#343434',
-    borderTopWidth: 5,
     justifyContent: 'center',
-    flexDirection: 'column',
+    borderTopColor: '#369',
+    borderTopWidth: 5,
+    borderBottomColor: '#369',
+    borderBottomWidth: 5,
   },
-  motd_quote: {
-    fontFamily: 'sans-serif',
+  motdQuote: {
     textAlign: 'center',
-    marginHorizontal: 30,
-    paddingBottom: 10,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    marginHorizontal: 10,
   },
-  motd_source: {
-    color: '#000',
-    fontStyle: 'italic',
+  motdSource: {
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 module.exports = Motd;

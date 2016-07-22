@@ -7,38 +7,48 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Widget from './WeatherComponents/WeatherWidget';
+import IconBar from './WeatherComponents/IconBar';
+import TemperatureBar from './WeatherComponents/TemperatureBar';
+import TemperatureLabel from './WeatherComponents/TemperatureLabel';
+import HumidityBar from './WeatherComponents/HumidityBar';
+import HumidityLabel from './WeatherComponents/HumidityLabel';
+import DateBar from './WeatherComponents/DateBar';
+import DateLabel from './WeatherComponents/DateLabel';
 
 class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
       weather: {
-        day_1: {
-          currentTemp: '88',
-          humidity: '88',
-          icon: 'hurricane',
-        },
-        day_2: {
-          currentTemp: '88',
-          humidity: '88',
-          icon: 'day-rain',
-        },
-        day_3: {
-          currentTemp: '88',
-          humidity: '88',
-          icon: 'hurricane',
-        },
-        day_4: {
-          currentTemp: '88',
-          humidity: '88',
-          icon: 'night-clear',
-        },
-        day_5: {
-          currentTemp: '88',
-          humidity: '88',
-          icon: 'night-hail',
-        },
+        date: [
+          '00/00',
+          '00/00',
+          '00/00',
+          '00/00',
+          '00/00',
+        ],
+        icons: [
+          "day-rain",
+          "hurricane",
+          "tornado",
+          "smog",
+          "night-clear",
+        ],
+        temperature: [
+          "88",
+          "88",
+          "88",
+          "88",
+          "88",
+        ],
+        humidity: [
+          "88",
+          "88",
+          "88",
+          "88",
+          "88",
+        ],
+        lastUpdate: '00:00 p.m.',
       }
     };
   }
@@ -46,67 +56,36 @@ class Weather extends Component {
   render() {
     return (
       <View style={styles.weatherView}>
-        <View style={styles.widgetBox}>
-          <Widget
-            temperature={this.state.weather.day_1.currentTemp}
-            humidity={this.state.weather.day_1.humidity}
-            icon={this.state.weather.day_1.icon}
-             />
-          <Widget
-            temperature={this.state.weather.day_2.currentTemp}
-            humidity={this.state.weather.day_2.humidity}
-            icon={this.state.weather.day_2.icon}
-             />
-          <Widget
-            temperature={this.state.weather.day_3.currentTemp}
-            humidity={this.state.weather.day_3.humidity}
-            icon={this.state.weather.day_3.icon}
-             />
-          <Widget
-            temperature={this.state.weather.day_4.currentTemp}
-            humidity={this.state.weather.day_4.humidity}
-            icon={this.state.weather.day_4.icon}
-             />
-          <Widget
-            temperature={this.state.weather.day_5.currentTemp}
-            humidity={this.state.weather.day_5.humidity}
-            icon={this.state.weather.day_5.icon}
-             />
-        </View>
+        <IconBar
+          name={this.state.weather.icons} />
+        <DateLabel />
+        <DateBar dates={this.state.weather.date}/>
+        <TemperatureLabel />
+        <TemperatureBar
+         temperature={this.state.weather.temperature} />
+        <HumidityLabel />
+        <HumidityBar
+          humidity={this.state.weather.humidity} />
         <View style={styles.updateTextContainer}>
           <Text style={styles.updateText}>Update available every 2 hours</Text>
-          <Text style={styles.updateText}>Last update was at: </Text>
+          <Text style={styles.updateText}>Last update was at: {this.state.weather.lastUpdate}</Text>
         </View>
       </View>
-      );
+    );
   }
 }
 
 const styles = StyleSheet.create({
   weatherView: {
-    flex: 2,
-    backgroundColor: '#369',
-    borderTopColor: '#343434',
-    borderTopWidth: 5,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-  widgetBox: {
     flex: 4,
-    backgroundColor: '#222',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   updateTextContainer: {
-    backgroundColor: 'red',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'pink',
   },
   updateText: {
-    flex: 1,
-    fontWeight: '800',
+    textAlign: 'center',
+    fontWeight: 'bold',
   }
 });
 
