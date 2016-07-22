@@ -51,13 +51,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  firstChild: {
-    backgroundColor: 'green',
-    zIndex: 500,
-  },
-  lastChild: {
-    backgroundColor: 'green',
-  },
 });
 
 module.exports = IconBar;

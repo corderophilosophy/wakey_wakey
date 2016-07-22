@@ -20,12 +20,12 @@ class DateBar extends Component {
 const styles = StyleSheet.create({
   dateBarContainer: {
     alignItems: 'stretch',
-    backgroundColor: 'rgb(108, 234, 6)',
   },
   dateBarText: {
     textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 18,
-    color: '#F7FFF7',
+    color: '#000',
   },
 });
 

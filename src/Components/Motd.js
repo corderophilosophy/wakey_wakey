@@ -49,20 +49,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'dodgerblue',
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopColor: '#369',
-    borderTopWidth: 5,
-    borderBottomColor: '#369',
-    borderBottomWidth: 5,
   },
   motdQuote: {
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'bold',
     marginHorizontal: 10,
+    color: '#000',
   },
   motdSource: {
     textAlign: 'center',
     fontWeight: 'bold',
+    color: '#000',
   },
 });
 module.exports = Motd;

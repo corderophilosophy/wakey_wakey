@@ -78,14 +78,17 @@ class Weather extends Component {
 const styles = StyleSheet.create({
   weatherView: {
     flex: 4,
+    backgroundColor: 'dodgerblue',
   },
   updateTextContainer: {
     flex: 1,
-    backgroundColor: 'pink',
+    paddingTop: 8,
+    backgroundColor: '#002345',
   },
   updateText: {
     textAlign: 'center',
     fontWeight: 'bold',
+    color: '#F7FFF7',
   }
 });
 

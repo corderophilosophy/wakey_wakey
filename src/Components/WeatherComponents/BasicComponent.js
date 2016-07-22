@@ -18,13 +18,6 @@ class BasicComponent extends Component {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   width: 25,
-  //   backgroundColor: 'red',
-  // },
   basicText: {
     flex: 1,
     textAlign: 'center',

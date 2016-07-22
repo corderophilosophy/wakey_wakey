@@ -20,12 +20,12 @@ class TemperatureLabel extends Component {
 const styles = StyleSheet.create({
   temperatureLabelContainer: {
     alignItems: 'stretch',
-    backgroundColor: 'rgb(144, 17, 167)',
   },
   temperatureLabelText: {
     textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 18,
-    color: '#F7FFF7',
+    color: '#000',
   },
 });
 

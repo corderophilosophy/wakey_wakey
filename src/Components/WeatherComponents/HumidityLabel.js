@@ -20,12 +20,12 @@ class HumidityBar extends Component {
 const styles = StyleSheet.create({
   humidityBarContainer: {
     alignItems: 'stretch',
-    backgroundColor: 'rgb(164, 217, 244)',
   },
   humidtyBarText: {
     textAlign: 'center',
     fontSize: 18,
-    color: '#F7FFF7',
+    fontWeight: 'bold',
+    color: '#000',
   },
 });
 

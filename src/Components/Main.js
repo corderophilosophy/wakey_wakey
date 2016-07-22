@@ -61,13 +61,12 @@ const styles = StyleSheet.create({
   alarmText: {
     fontSize: 60,
     fontWeight: 'bold',
-    color: '#343434',
+    color: '#000000',
     marginLeft: 50,
   },
   alarmArrow: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: '#343434',
     marginRight: 50,
   },
 });
