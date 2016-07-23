@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     textShadowRadius: 20,
     textShadowOffset: {width: 2, height: 2},
   },
+  today: {
+    fontSize: 34,
+  }
 });
 
 export default styles;

@@ -27,13 +27,13 @@ class IconBar extends Component {
           </Text>
         </Basic>
         <View style={styles.iconBarTemperatureContainer}>
-          <Text style={s.basicText}>
-            {this.props.temperatureToday}
+          <Text style={[s.basicText, s.today]}>
+            {this.props.temperatureToday}&deg;F
           </Text>
         </View>
         <View style={styles.iconBarHumidityContainer}>
-          <Text style={s.basicText}>
-            {this.props.humidityToday}
+          <Text style={[s.basicText, s.today]}>
+            {this.props.humidityToday}%
           </Text>
         </View>
       </View>
