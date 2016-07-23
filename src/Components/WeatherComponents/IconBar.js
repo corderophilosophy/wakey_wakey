@@ -10,7 +10,10 @@ import {
 import Basic from './BasicComponent';
 import s from '../../Styles/styles';
 
-import { createIconSetFromFontello } from 'react-native-vector-icons'; import fontelloConfig from '../../Data/config.json';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
+import fontelloConfig from '../../Data/config.json';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 const Icon = createIconSetFromFontello(fontelloConfig);
 
 // console.log(this.props);
@@ -23,7 +26,7 @@ class IconBar extends Component {
             <Icon
               name={this.props.name}
               size={50}
-              color="#002147" />
+              color='#002147' />
           </Text>
         </Basic>
         <View style={styles.iconBarTemperatureContainer}>
@@ -36,6 +39,14 @@ class IconBar extends Component {
             {this.props.humidityToday}%
           </Text>
         </View>
+        <Basic>
+          <Text>
+            <FontAwesome
+              name='refresh'
+              color='#002147'
+              size={50} />
+          </Text>
+        </Basic>
       </View>
     );
   }

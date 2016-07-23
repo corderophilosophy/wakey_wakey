@@ -35,7 +35,11 @@ class BackButton extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  navBackButton: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
 });
 
 module.exports = BackButton;

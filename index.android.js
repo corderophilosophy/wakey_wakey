@@ -16,17 +16,6 @@ const WEATHER_API_KEY = '';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     weather: {
-  //       currentTemp: 0,
-  //       humidity: 0,
-  //       icon: null,
-  //       lastUpdate: '',
-  //     },
-  //   };
-  // }
   _renderScene(route, navigator) {
     var _navigator = navigator;
     switch (route.id) {

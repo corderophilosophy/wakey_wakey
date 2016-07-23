@@ -22,5 +22,7 @@ export default class Alarms extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
 });
