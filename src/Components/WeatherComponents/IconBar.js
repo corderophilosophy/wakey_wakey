@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import Basic from './BasicComponent';
+import s from '../../Styles/styles';
 
 import { createIconSetFromFontello } from 'react-native-vector-icons'; import fontelloConfig from '../../Data/config.json';
 const Icon = createIconSetFromFontello(fontelloConfig);
@@ -18,28 +19,23 @@ class IconBar extends Component {
     return (
       <View style={styles.iconContainer}>
         <Basic>
-          <Icon
-            name={this.props.name[0]}
-            size={50}
-            color="black"
-            style={styles.firstChild} />
+          <Text style={s.iconShadow}>
+            <Icon
+              name={this.props.name}
+              size={50}
+              color="#002147" />
+          </Text>
         </Basic>
-        <Basic>
-          <Icon name={this.props.name[1]} size={50} color="black" />
-        </Basic>
-        <Basic>
-          <Icon name={this.props.name[2]} size={50} color="black" />
-        </Basic>
-        <Basic>
-          <Icon name={this.props.name[3]} size={50} color="black" />
-        </Basic>
-        <Basic>
-          <Icon
-            name={this.props.name[4]}
-            size={50}
-            color="black"
-            style={styles.lastChild} />
-        </Basic>
+        <View style={styles.iconBarTemperatureContainer}>
+          <Text style={s.basicText}>
+            {this.props.temperatureToday}
+          </Text>
+        </View>
+        <View style={styles.iconBarHumidityContainer}>
+          <Text style={s.basicText}>
+            {this.props.humidityToday}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -48,8 +44,15 @@ const styles = StyleSheet.create({
   iconContainer: {
     flex: 2,
     flexDirection: 'row',
-    justifyContent: 'center',
+    // alignItems: 'center',
+  },
+  iconBarTemperatureContainer: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconBarHumidityContainer: {
+    flex: 1,
   },
 });
 

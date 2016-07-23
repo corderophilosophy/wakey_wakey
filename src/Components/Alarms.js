@@ -10,7 +10,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class Alarm extends Component {
+export default class Alarms extends Component {
   _onPressButton() {
     console.log('Hi!');
   }
@@ -24,7 +24,7 @@ export default class Alarm extends Component {
             <Text><Icon name="chevron-left" size={50} color="#000"/></Text>
           </View>
         </TouchableNativeFeedback>
-        <Text>I'm the Alarm component</Text>
+        <Text>I'm the Alarms component</Text>
       </View>
     );
   }

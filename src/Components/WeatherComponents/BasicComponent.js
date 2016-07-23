@@ -11,7 +11,7 @@ class BasicComponent extends Component {
   render() {
     return (
 
-      <Text style={styles.basicText}>{this.props.children}</Text>
+      <View style={styles.basicText}>{this.props.children}</View>
 
     );
   }
@@ -20,12 +20,9 @@ class BasicComponent extends Component {
 const styles = StyleSheet.create({
   basicText: {
     flex: 1,
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    width: 10,
   },
 });
 

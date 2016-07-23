@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import Main from './src/Components/Main';
-import Alarm from './src/Components/Alarm';
+import Alarms from './src/Components/Alarms';
 
 const WEATHER_API_KEY = '';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
@@ -32,8 +32,8 @@ class App extends Component {
     switch (route.id) {
     case 'Main':
       return(<Main navigator={navigator} title="Main" />);
-    case 'Alarm':
-      return(<Alarm navigator={navigator} title="Alarm" />);
+    case 'Alarms':
+      return(<Alarms navigator={navigator} title="Alarms" />);
     }
   }
   render() {

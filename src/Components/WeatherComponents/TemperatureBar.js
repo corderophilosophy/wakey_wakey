@@ -8,25 +8,26 @@ import {
 } from 'react-native';
 
 import Basic from './BasicComponent';
+import s from '../../Styles/styles';
 
 class Temperature extends Component {
   render() {
     return (
       <View style={styles.temperatureContainer}>
         <Basic>
-         {this.props.temperature[0]}&deg;F
+          <Text style={s.basicText}>{this.props.temperature[0]}&deg;F</Text>
         </Basic>
         <Basic>
-         {this.props.temperature[1]}&deg;F
+          <Text style={s.basicText}>{this.props.temperature[1]}&deg;F</Text>
         </Basic>
         <Basic>
-         {this.props.temperature[2]}&deg;F
+          <Text style={s.basicText}>{this.props.temperature[2]}&deg;F</Text>
         </Basic>
         <Basic>
-         {this.props.temperature[3]}&deg;F
+          <Text style={s.basicText}>{this.props.temperature[3]}&deg;F</Text>
         </Basic>
         <Basic>
-          {this.props.temperature[4]}&deg;F
+          <Text style={s.basicText}>{this.props.temperature[4]}&deg;F</Text>
         </Basic>
       </View>
     );

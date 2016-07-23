@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
 } from 'react-native';
-import Happy from '../Data/_motd.js';
+import Happy from '../../Data/_motd.js';
 
 class Motd extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class Motd extends Component {
 const styles = StyleSheet.create({
   motdContainer: {
     flex: 2,
-    backgroundColor: 'dodgerblue',
+    backgroundColor: '#002147',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginHorizontal: 10,
-    color: '#000',
+    color: '#d3d3d3',
   },
   motdSource: {
     textAlign: 'center',
     fontWeight: 'bold',
-    color: '#000',
+    color: '#d3d3d3',
   },
 });
 module.exports = Motd;

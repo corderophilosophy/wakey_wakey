@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#002147',
     textDecorationLine: 'underline',
   },
 });

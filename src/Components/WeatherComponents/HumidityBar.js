@@ -8,25 +8,26 @@ import {
 } from 'react-native';
 
 import Basic from './BasicComponent';
+import s from '../../Styles/styles';
 
 class HumidityBar extends Component {
   render() {
     return (
       <View style={styles.humidityContainer}>
         <Basic>
-         {this.props.humidity[0]}%
+          <Text style={s.basicText}>{this.props.humidity[0]}%</Text>
         </Basic>
         <Basic>
-         {this.props.humidity[1]}%
+          <Text style={s.basicText}>{this.props.humidity[1]}%</Text>
         </Basic>
         <Basic>
-         {this.props.humidity[2]}%
+          <Text style={s.basicText}>{this.props.humidity[2]}%</Text>
         </Basic>
         <Basic>
-         {this.props.humidity[3]}%
+          <Text style={s.basicText}>{this.props.humidity[3]}%</Text>
         </Basic>
         <Basic>
-          {this.props.humidity[4]}%
+          <Text style={s.basicText}>{this.props.humidity[4]}%</Text>
         </Basic>
       </View>
     );

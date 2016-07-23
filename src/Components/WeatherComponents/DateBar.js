@@ -8,25 +8,26 @@ import {
 } from 'react-native';
 
 import Basic from './BasicComponent';
+import s from '../../Styles/styles';
 
 class DateBar extends Component {
   render() {
     return (
       <View style={styles.dateContainer}>
         <Basic>
-         {this.props.dates[0]}
+         <Text style={s.basicText}>{this.props.dates[0]}</Text>
         </Basic>
         <Basic>
-         {this.props.dates[1]}
+          <Text style={s.basicText}>{this.props.dates[1]}</Text>
         </Basic>
         <Basic>
-         {this.props.dates[2]}
+          <Text style={s.basicText}>{this.props.dates[2]}</Text>
         </Basic>
         <Basic>
-         {this.props.dates[3]}
+          <Text style={s.basicText}>{this.props.dates[3]}</Text>
         </Basic>
         <Basic>
-          {this.props.dates[4]}
+          <Text style={s.basicText}>{this.props.dates[4]}</Text>
         </Basic>
       </View>
     );
@@ -39,6 +40,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  dateText: {
+    textShadowColor: 'red',
+    textShadowRadius: 0,
+    textShadowOffset: {width: 0, height: 0},
   },
 });
 
