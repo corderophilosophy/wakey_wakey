@@ -8,22 +8,13 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import BackButton from './AlarmComponents/BackButton';
 
 export default class Alarms extends Component {
-  _onPressButton() {
-    console.log('Hi!');
-  }
   render() {
     return (
       <View style={styles.container}>
-        <TouchableNativeFeedback
-          onPress={this._onPressButton.bind(this)}
-          background={TouchableNativeFeedback.SelectableBackground()}>
-          <View style={styles.navBackButton} onPress={this._onPressButton()}>
-            <Text><Icon name="chevron-left" size={50} color="#000"/></Text>
-          </View>
-        </TouchableNativeFeedback>
+        <BackButton navigator={this.props.navigator} />
         <Text>I'm the Alarms component</Text>
       </View>
     );

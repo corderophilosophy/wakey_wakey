@@ -42,7 +42,15 @@ class App extends Component {
         initialRoute={{
           id: 'Main',
         }}
-        renderScene={this._renderScene} />
+        renderScene={this._renderScene}
+        configureScene={(route, routeStack) => {
+          switch(route.id) {
+          case 'Main':
+            return Navigator.SceneConfigs.FloatFromLeft;
+          case 'Alarms':
+            return Navigator.SceneConfigs.FloatFromRight;
+          }
+        }}/>
     );
   }
 }

@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 export default class Alarm extends Component {
   _onPressButton() {
     this.props.navigator.push({
-      id: 'Alarm'
+      id: 'Alarms'
     });
   }
   render() {
@@ -25,12 +25,16 @@ export default class Alarm extends Component {
           style={styles.backdrop} />
         <View style={styles.overlay}>
         </View>
-        <View style={styles.alarmContainer}>
-          <Text style={styles.alarmText}>Alarms</Text>
-          <Text style={styles.alarmArrow}>
-            <Icon name="forward" size={50} color="#d3d3d3" />
-          </Text>
-        </View>
+        <TouchableNativeFeedback
+          onPress={this._onPressButton.bind(this)}
+          background={TouchableNativeFeedback.SelectableBackground()}>
+          <View style={styles.alarmContainer}>
+            <Text style={styles.alarmText}>Alarms</Text>
+            <Text style={styles.alarmArrow}>
+              <Icon name="forward" size={50} color="#d3d3d3" />
+            </Text>
+          </View>
+        </TouchableNativeFeedback>
       </View>
     );
   }

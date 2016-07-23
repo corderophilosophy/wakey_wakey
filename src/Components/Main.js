@@ -13,15 +13,10 @@ import Motd from './MainComponents/Motd';
 import Weather from './MainComponents/Weather';
 
 export default class Main extends Component {
-  _onPressButton() {
-    this.props.navigator.push({
-      id: 'Alarm'
-    });
-  }
   render() {
     return (
       <View style={styles.container}>
-        <Alarm navigator={navigator} />
+        <Alarm navigator={this.props.navigator} />
         <View style={styles.mwContainer}>
           <Motd />
           <Weather />
