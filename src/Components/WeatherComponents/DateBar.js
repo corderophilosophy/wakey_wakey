@@ -26,9 +26,6 @@ class DateBar extends Component {
         <Basic>
           <Text style={s.basicText}>{this.props.dates[3]}</Text>
         </Basic>
-        <Basic>
-          <Text style={s.basicText}>{this.props.dates[4]}</Text>
-        </Basic>
       </View>
     );
   }
@@ -41,11 +38,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  dateText: {
-    textShadowColor: 'red',
-    textShadowRadius: 0,
-    textShadowOffset: {width: 0, height: 0},
-  },
+  // dateText: {
+  //   textShadowColor: 'red',
+  //   textShadowRadius: 0,
+  //   textShadowOffset: {width: 0, height: 0},
+  // },
 });
 
 module.exports = DateBar;

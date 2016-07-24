@@ -26,9 +26,6 @@ class HumidityBar extends Component {
         <Basic>
           <Text style={s.basicText}>{this.props.humidity[3]}%</Text>
         </Basic>
-        <Basic>
-          <Text style={s.basicText}>{this.props.humidity[4]}%</Text>
-        </Basic>
       </View>
     );
   }

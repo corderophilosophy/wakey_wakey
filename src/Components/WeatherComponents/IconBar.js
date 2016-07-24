@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  TouchableNativeFeedback,
   Text,
   StyleSheet,
 } from 'react-native';
@@ -18,6 +19,9 @@ const Icon = createIconSetFromFontello(fontelloConfig);
 
 // console.log(this.props);
 class IconBar extends Component {
+  _onPressButton() {
+    this.props._updateForecast();
+  }
   render() {
     return (
       <View style={styles.iconContainer}>
@@ -40,12 +44,16 @@ class IconBar extends Component {
           </Text>
         </View>
         <Basic>
-          <Text>
-            <FontAwesome
-              name='refresh'
-              color='#002147'
-              size={50} />
-          </Text>
+          <TouchableNativeFeedback
+            onPress={this._onPressButton}
+            background={TouchableNativeFeedback.SelectableBackground()}>
+            <Text>
+              <FontAwesome
+                name='refresh'
+                color='#002147'
+                size={50} />
+            </Text>
+          </TouchableNativeFeedback>
         </Basic>
       </View>
     );
