@@ -32,39 +32,32 @@ class Weather extends Component {
         temperature: '',
         humidity: '',
         date: '',
-        icon: 'day-rain',
+        icon: '',
       },
-      forecast: {
-        date: [
-          '00/00',
-          '00/00',
-          '00/00',
-          '00/00',
-          '00/00',
+      forecast: { //this.state.forecast
+        days: [ //this.state.forecast.days
+          {   //this.state.forecast.days.day0
+            temperature: '',  //this.state.forecast.days.day0.temperature
+            humidity: '',
+          },
+          {
+            temperature: '',
+            humidity: '',
+          },
+          {
+            temperature: '',
+            humidity: '',
+          },
+          {
+            temperature: '',
+            humidity: '',
+          },
+          {
+            temperature: '',
+            humidity: '',
+          },
         ],
-        temperature: [
-          "88",
-          "88",
-          "88",
-          "88",
-          "88",
-        ],
-        humidity: [
-          "88",
-          "88",
-          "88",
-          "88",
-          "88",
-        ],
-        lastUpdate: '00:00 p.m.',
-        _updateWeather() {
-          AsyncStorage.getItem(STORAGE_KEY)
-          .then((value) => {
-            if (value !== null) {
-              this.getWeather(value);
-            }
-          });
-        },
+        lastUpdate: '',
       },
     };
   }
@@ -86,29 +79,37 @@ class Weather extends Component {
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
   }
+  _updateWeather() {
+    AsyncStorage.getItem(STORAGE_KEY)
+    .then((value) => {
+      if (value !== null) {
+        console.log(this);
+        this._getWeather(value);
+      }
+    });
+  }
   _getDate() {
     var today = new Date();
     var m = today.getMonth();
     var d = today.getDate();
     return `${m}/${d}`;
   }
-  _refreshWeather(response) {
-    this.setState({
-      weather: {
-        temperature: response.main.temp,
-        humidty: response.main.humidity,
-        date: this._getDate(),
-        icon: 'day-rain' //response.weather[0].icon,
-      }
-    });
-  }
   _getWeather(value) {
+    console.log(`_getWeather is running now.`);
     let lat = 30;
     let lon = 84;
     let url = `${API_STEM}weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`;
     fetch(url)
-    .then((response) => {
-      this._refreshWeather(response);
+    .then((response) => response.json())
+    .then((responseJSON) => {
+      this.setState({
+        weather: {
+          temperature: responseJSON.main.temp,
+          humidty: responseJSON.main.humidity,
+          date: this._getDate(),
+          icon: 'day-rain' //response.weather[0].icon,
+        }
+      });
     });
   }
   _formatDate(date) {
@@ -119,14 +120,11 @@ class Weather extends Component {
   _getForecast(initialPosition) {
     let lat = initialPosition.coords.latitude;
     let lon = initialPosition.coords.longitude;
-    let url = `${API_STEM}forecast?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`;
+    let url = `${API_STEM}forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${WEATHER_API_KEY}`;
     fetch(url)
-    .then((response) => {
-      console.log(`response: ${response.list}`);
-      var list = response.list;
-      // console.log(`response.json(): ${list.json()}`);
-      console.log(`JSON.stringify(response): ${JSON.stringify(response.list)}`);
-      this._updateForecast(response.json());
+    .then((response) => response.json())
+    .then((responseJSON) => {
+      this._updateForecast(responseJSON);
     })
     .catch((error) => {
       console.warn(error);
@@ -137,21 +135,6 @@ class Weather extends Component {
     console.log(response);
     var filtered = list.filter((element, index) => {
       return element.dt_txt.match(/(18:00:00)$/gm);
-    })
-    .map((current, index) => {
-      this.setState({
-        forecast: {
-          date: [
-            filtered[0].dt_txt, filtered[1].dt_txt, filtered[2].dt_txt, filtered[3].dt_txt, filtered[4].dt_txt,
-          ],
-          temperature: [
-            filtered[0].main.temp, filtered[1].main.temp, filtered[2].main.temp, filtered[3].main.temp, filtered[4].main.temp,
-          ],
-          humidity: [
-            filtered[0].main.humidty, filtered[1].main.humidty, filtered[2].main.humidty, filtered[3].main.humidty, filtered[4].main.humidty,
-          ],
-        }
-      });
     });
   }
 // This should render the 5-day forecast
@@ -166,7 +149,7 @@ class Weather extends Component {
     return (
       <View style={styles.weatherView}>
         <IconBar
-          _updateForecast={this.state._updateWeather}
+          _updateWeather={this._updateWeather()}
           name={icon}
           temperatureToday={temperatureToday}
           humidityToday = {humidityToday} />

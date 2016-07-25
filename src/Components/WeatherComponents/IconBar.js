@@ -20,7 +20,7 @@ const Icon = createIconSetFromFontello(fontelloConfig);
 // console.log(this.props);
 class IconBar extends Component {
   _onPressButton() {
-    this.props._updateForecast();
+    this.props._updateWeather;
   }
   render() {
     return (
@@ -45,7 +45,7 @@ class IconBar extends Component {
         </View>
         <Basic>
           <TouchableNativeFeedback
-            onPress={this._onPressButton}
+            onPress={this._onPressButton.bind(this)}
             background={TouchableNativeFeedback.SelectableBackground()}>
             <Text>
               <FontAwesome
