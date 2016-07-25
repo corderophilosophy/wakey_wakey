@@ -16,14 +16,18 @@ import HumidityLabel from '../WeatherComponents/HumidityLabel';
 import DateBar from '../WeatherComponents/DateBar';
 import DateLabel from '../WeatherComponents/DateLabel';
 
-const STORAGE_KEY = '@wakey_wakey:initialPosition';
-const WEATHER_API_KEY = '6ec36da01686fe43dd5540c776619d4b';
+const STORAGE_KEY = '@wakey_wakey:location';
+const WEATHER_API_KEY = 'fd606b3e7f38aebcac948c035d514b00';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/';
 
 class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialLatitude: '',
+      initialLongitude: '',
+      currentLatitude: '',
+      currentLongitude: '',
       weather: {
         temperature: '',
         humidity: '',
@@ -31,10 +35,6 @@ class Weather extends Component {
         icon: 'day-rain',
       },
       forecast: {
-        initialLatitude: '',
-        initialLongitude: '',
-        currentLatitude: '',
-        currentLongitude: '',
         date: [
           '00/00',
           '00/00',
@@ -71,7 +71,12 @@ class Weather extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (initialPosition) => {
-        AsyncStorage.setItem(STORAGE_KEY, initialPosition)
+        this.setState({
+          initialLatitude: initialPosition.coords.latitude,
+          initialLongitude: initialPosition.coords.longitude,
+        });
+        var location = JSON.stringify(`${initialPosition.coords.latitude},${initialPosition.coords.longitude}`);
+        AsyncStorage.setItem(STORAGE_KEY, location)
           .then(() => console.log(`Saved to disk: ${initialPosition}`))
           .catch((error) => console.log(`AsyncStorage error: ${error.message}`))
           .done();
@@ -93,13 +98,13 @@ class Weather extends Component {
         temperature: response.main.temp,
         humidty: response.main.humidity,
         date: this._getDate(),
-        icon: response.weather[0].icon,
+        icon: 'day-rain' //response.weather[0].icon,
       }
     });
   }
   _getWeather(value) {
-    let lat = value.coords.latitude;
-    let lon = value.coords.longitude;
+    let lat = 30;
+    let lon = 84;
     let url = `${API_STEM}weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`;
     fetch(url)
     .then((response) => {
@@ -116,11 +121,20 @@ class Weather extends Component {
     let lon = initialPosition.coords.longitude;
     let url = `${API_STEM}forecast?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`;
     fetch(url)
-    .then((response) => { this._updateForecast(response.json());
+    .then((response) => {
+      console.log(`response: ${response.list}`);
+      var list = response.list;
+      // console.log(`response.json(): ${list.json()}`);
+      console.log(`JSON.stringify(response): ${JSON.stringify(response.list)}`);
+      this._updateForecast(response.json());
+    })
+    .catch((error) => {
+      console.warn(error);
     });
   }
   _updateForecast(response) {
     var list = response.list;
+    console.log(response);
     var filtered = list.filter((element, index) => {
       return element.dt_txt.match(/(18:00:00)$/gm);
     })
@@ -145,10 +159,10 @@ class Weather extends Component {
     const temperature = this.state.forecast.temperature;
     const humidity = this.state.forecast.humidity;
     const dates = this.state.forecast.date;
-    const icon = this.state.forecast.icon;
+    const icon = this.state.weather.icon;
     const lastUpdate = this.state.forecast.lastUpdate;
-    const temperatureToday = this.state.forecast.temperature[0];
-    const humidityToday = this.state.forecast.humidity[0];
+    const temperatureToday = this.state.weather.temperature;
+    const humidityToday = this.state.weather.humidity;
     return (
       <View style={styles.weatherView}>
         <IconBar
