@@ -15,7 +15,7 @@ import HumidityBar from '../WeatherComponents/HumidityBar';
 import HumidityLabel from '../WeatherComponents/HumidityLabel';
 import DateBar from '../WeatherComponents/DateBar';
 import DateLabel from '../WeatherComponents/DateLabel';
-import FetchWeather from '../WeatherComponets/FetchWeather';
+import FetchWeather from '../../Utilities/FetchWeather';
 
 const LATITUDE = '@wakey_wakey:latitude';
 const LONGITUDE = '@wakey_wakey:longitude';
@@ -31,9 +31,6 @@ class Weather extends Component {
         humidity: '',
         date: '',
         icon: '',
-      },
-      forecast: {
-        days: {},
       },
       lastUpdate: '',
     };
