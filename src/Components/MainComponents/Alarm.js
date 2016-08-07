@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Entypo';
+import s from '../../Styles/styles';
 
 export default class Alarm extends Component {
   _onPressButton() {
@@ -22,9 +23,8 @@ export default class Alarm extends Component {
       <View style={styles.container}>
         <Image source={require('../../Assets/Images/clock.png')}
           resizeMode='cover'
-          style={styles.backdrop} />
-        <View style={styles.overlay}>
-        </View>
+          style={s.backdrop} />
+        <View style={s.overlay} />
         <TouchableNativeFeedback
           onPress={this._onPressButton.bind(this)}
           background={TouchableNativeFeedback.SelectableBackground()}>
@@ -43,20 +43,6 @@ export default class Alarm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backdrop: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: '#000',
-    opacity: 0.5,
-    width: 415,
-    height: 165,
   },
   alarmContainer: {
     flex: 1,

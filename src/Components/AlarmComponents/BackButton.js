@@ -8,7 +8,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import s from '../../Styles/styles';
+
+import Icon from 'react-native-vector-icons/Entypo';
 
 class BackButton extends Component {
   _onPressButton() {
@@ -18,28 +20,19 @@ class BackButton extends Component {
   }
   render() {
     return (
-      <View>
-        <TouchableNativeFeedback
-          onPress={this._onPressButton.bind(this)}
-          background={TouchableNativeFeedback.SelectableBackground()}>
-            <View
-              style={styles.navBackButton}>
-              <Text>
-                <Icon name="chevron-left" size={50} color="#000"/>
-              </Text>
-            </View>
-        </TouchableNativeFeedback>
-      </View>
+      <TouchableNativeFeedback
+        onPress={this._onPressButton.bind(this)}
+        background={TouchableNativeFeedback.SelectableBackground()}>
+          <View
+            style={s.replyContainer}>
+            <Text>
+              <Icon name="reply" size={50} color="white"/>
+            </Text>
+          </View>
+      </TouchableNativeFeedback>
+
     );
   }
 }
-
-const styles = StyleSheet.create({
-  navBackButton: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-});
 
 module.exports = BackButton;
