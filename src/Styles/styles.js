@@ -58,6 +58,37 @@ module.exports = {
   alarmLabelContainer: {
     flex: 1,
   },
+  alarmSetupContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 10,
+  },
+  alarmInnerContainer: {
+    padding: 20,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    borderRadius: 3,
+    backgroundColor: '#fff',
+  },
+  modalRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    backgroundColor: '#d3d3d3',
+    marginVertical: 5,
+    paddingVertical: 10,
+    paddingLeft: 15,
+    borderRadius: 3,
+  },
+  timePickerButton: {
+    padding: 0,
+  },
+  messageButton: {},
   footerContainer: {
     flex: 1,
     marginVertical: 10,
@@ -67,9 +98,18 @@ module.exports = {
     alignItems: 'center',
     bottom: 0,
   },
-  addAlarmScreenContainer: {
+  timePickerText: {
     flex: 1,
-    backgroundColor: 'dodgerblue',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  alarmMessageInput: {
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    textAlign: 'center',
   },
   selected: {
     textDecoration: 'none',

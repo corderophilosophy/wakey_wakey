@@ -26,6 +26,7 @@ export default class Alarms extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([]),
       alarms: [],
+      currentAlarm: '',
       modalVisibility: false,
     };
   }
@@ -64,6 +65,25 @@ export default class Alarms extends Component {
       modalVisibility: false,
     });
   }
+  async _showTimePicker() {
+    try {
+      const {action, minute, hour} = await TimePickerAndroid.open();
+      var newState = {};
+      if (action === TimePickerAndroid.timeSetAction) {
+        newState['Text'] = hour + ':' + (minute < 10 ? '0' + minute : minute);
+        newState['Hour'] = hour;
+        newState['Minute'] = minute;
+      } else if (action === TimePickerAndroid.dismissedAction) {
+        newState['Text'] = 'dismissed';
+      }
+      this.setState({
+        alarms: this.state.alarms.concat([newState]),
+        currentAlarm: newState['Text'],
+      });
+    } catch({code, message}) {
+      console.warn('Error: ' + message);
+    }
+  }
   render() {
     return (
       <View style={s.mainContainer}>
@@ -75,10 +95,11 @@ export default class Alarms extends Component {
             dataSource={this.state.dataSource}
             renderRow={this._renderRow} />
           <AddAlarmModal
+            currentAlarm={this.state.currentAlarm}
+            showTimePicker={this._showTimePicker.bind(this)}
             modalVisible={this.state.modalVisibility}
-            showModal={this._showModal}
-            hideModal={this._hideModal} />
-          <Footer showModal={this._showModal} />
+            hideModal={this._hideModal.bind(this)} />
+          <Footer showModal={this._showModal.bind(this)} />
       </View>
     );
   }
