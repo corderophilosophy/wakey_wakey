@@ -15,6 +15,7 @@ import s from '../Styles/styles';
 import Header from './AlarmComponents/Header';
 import Footer from './AlarmComponents/Footer';
 import AlarmItem from './AlarmComponents/AlarmItem';
+import AddAlarmModal from './AlarmComponents/AddAlarmModal';
 
 const URL = `https://wakeywakey-4f20f.firebaseio.com/Alarms/alarms.json`;
 
@@ -25,6 +26,7 @@ export default class Alarms extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([]),
       alarms: [],
+      modalVisibility: false,
     };
   }
   componentDidMount() {
@@ -52,8 +54,15 @@ export default class Alarms extends Component {
     })
     .catch((error) => console.error(error));
   }
-  _addAlarm() {
-    
+  _showModal() {
+    this.setState({
+      modalVisibility: true,
+    });
+  }
+  _hideModal() {
+    this.setState({
+      modalVisibility: false,
+    });
   }
   render() {
     return (
@@ -65,8 +74,11 @@ export default class Alarms extends Component {
             style={s.alarmsList}
             dataSource={this.state.dataSource}
             renderRow={this._renderRow} />
-          <Footer addAlarm={this._addAlarm}
-            navigator={this.props.navigator} />
+          <AddAlarmModal
+            modalVisible={this.state.modalVisibility}
+            showModal={this._showModal}
+            hideModal={this._hideModal} />
+          <Footer showModal={this._showModal} />
       </View>
     );
   }

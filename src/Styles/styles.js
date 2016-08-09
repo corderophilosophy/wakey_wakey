@@ -67,6 +67,10 @@ module.exports = {
     alignItems: 'center',
     bottom: 0,
   },
+  addAlarmScreenContainer: {
+    flex: 1,
+    backgroundColor: 'dodgerblue',
+  },
   selected: {
     textDecoration: 'none',
   },

@@ -15,7 +15,7 @@ class Footer extends Component {
   render() {
     return (
       <View style={s.footerContainer}>
-        <AddAlarmButton alarmAdd={this.props.addAlarm} />
+        <AddAlarmButton openModal={this.props.showModal} />
       </View>
     );
   }

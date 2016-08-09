@@ -12,11 +12,10 @@ import s from '../../Styles/styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class AddAlarmButton extends Component {
-
   render() {
     return (
       <TouchableNativeFeedback
-        onPress={this.props.alarmAdd}
+        onPress={this.props.openModal}
         background={TouchableNativeFeedback.SelectableBackground()}>
           <View style={s.alarmButtonContainer}>
             <Icon style={[s.addAlarmButton]} name="alarm-add" size={50} color="white"/>

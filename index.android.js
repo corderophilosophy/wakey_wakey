@@ -11,6 +11,7 @@ import {
 
 import Main from './src/Components/Main';
 import Alarms from './src/Components/Alarms';
+import AddAlarmModal from  './src/Components/AlarmComponents/AddAlarmModal';
 
 const WEATHER_API_KEY = '';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
