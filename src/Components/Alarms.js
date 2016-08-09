@@ -26,7 +26,13 @@ export default class Alarms extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([]),
       alarms: [],
-      currentAlarm: '',
+      currentAlarm: {
+        time: '',
+        hour: '',
+        minute: '',
+        label: '',
+        value: false,
+      },
       modalVisibility: false,
     };
   }
@@ -67,8 +73,12 @@ export default class Alarms extends Component {
   }
   async _showTimePicker() {
     try {
-      const {action, minute, hour} = await TimePickerAndroid.open();
+      const {action, Minute, Hour} = await TimePickerAndroid.open();
       var newState = {};
+      var hour, minute;
+      switch(Hour) {
+        case "00": // format the times here to pass to 'newState';
+      }
       if (action === TimePickerAndroid.timeSetAction) {
         newState['Text'] = hour + ':' + (minute < 10 ? '0' + minute : minute);
         newState['Hour'] = hour;
@@ -76,13 +86,17 @@ export default class Alarms extends Component {
       } else if (action === TimePickerAndroid.dismissedAction) {
         newState['Text'] = 'dismissed';
       }
-      this.setState({
-        alarms: this.state.alarms.concat([newState]),
-        currentAlarm: newState['Text'],
-      });
+      this._formatTimePicked(newState);
     } catch({code, message}) {
       console.warn('Error: ' + message);
     }
+  }
+  _currentMessage(evt) {
+    this.setState({
+      currentAlarm: {
+        label: evt.nativeEvent.text
+      }
+    })
   }
   render() {
     return (
@@ -95,6 +109,7 @@ export default class Alarms extends Component {
             dataSource={this.state.dataSource}
             renderRow={this._renderRow} />
           <AddAlarmModal
+            handleMessageSubmit={this._currentMessage.bind(this)}
             currentAlarm={this.state.currentAlarm}
             showTimePicker={this._showTimePicker.bind(this)}
             modalVisible={this.state.modalVisibility}

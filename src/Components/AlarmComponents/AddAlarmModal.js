@@ -14,6 +14,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class AddAlarmModal extends Component {
+  _handleSubmit(text) {
+    this.props.handleMessageSubmit(text);
+  }
   render() {
     return (
     <View>
@@ -30,7 +33,7 @@ class AddAlarmModal extends Component {
                 <Icon style={s.timePickerButton}
                   name="clock-o" size={50} color="white"/>
                 <Text style={s.timePickerText}>
-                {this.props.currentAlarm}
+                  {this.props.currentAlarm.time}
                 </Text>
               </View>
             </TouchableHighlight>
@@ -40,7 +43,7 @@ class AddAlarmModal extends Component {
               <TextInput
                 placeholder='Add a message for this alarm...'
                 style={s.alarmMessageInput}
-                onSubmitEditing={this._handleTextSubmit} />
+                onSubmitEditing={(text) => this._handleSubmit(text)} />
             </View>
           </View>
         </View>
