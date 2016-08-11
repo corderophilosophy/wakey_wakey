@@ -111,6 +111,13 @@ module.exports = {
     marginRight: 20,
     textAlign: 'center',
   },
+  addAlarmActionButtons: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'space-around',
+  },
+  
   selected: {
     textDecoration: 'none',
   },

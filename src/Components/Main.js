@@ -101,6 +101,7 @@ class Main extends Component {
     fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
+        console.log(responseJSON);
         let ico = this._iconFilter(responseJSON.weather[0]);
         let date = this._formatDate(responseJSON.dt);
         this.setState({

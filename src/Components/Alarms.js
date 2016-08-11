@@ -26,13 +26,11 @@ export default class Alarms extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([]),
       alarms: [],
-      currentAlarm: {
-        time: '',
-        hour: '',
-        minute: '',
-        label: '',
-        value: false,
-      },
+      currentTime: '',
+      currentHour: '',
+      currentMinute: '',
+      currentLabel: '',
+      value: false,
       modalVisibility: false,
     };
   }
@@ -73,30 +71,42 @@ export default class Alarms extends Component {
   }
   async _showTimePicker() {
     try {
-      const {action, Minute, Hour} = await TimePickerAndroid.open();
+      const {action, minute, hour} = await TimePickerAndroid.open();
       var newState = {};
-      var hour, minute;
-      switch(Hour) {
-        case "00": // format the times here to pass to 'newState';
-      }
       if (action === TimePickerAndroid.timeSetAction) {
         newState['Text'] = hour + ':' + (minute < 10 ? '0' + minute : minute);
         newState['Hour'] = hour;
-        newState['Minute'] = minute;
+        newState['Minute'] = minute < 10 ? '0' + minute : minute;
       } else if (action === TimePickerAndroid.dismissedAction) {
         newState['Text'] = 'dismissed';
       }
-      this._formatTimePicked(newState);
+      this.setState({
+        currentTime: newState['Text'],
+        currentHour: newState['Hour'],
+        currentMinute: newState['Minute'],
+      });
     } catch({code, message}) {
       console.warn('Error: ' + message);
     }
   }
   _currentMessage(evt) {
     this.setState({
-      currentAlarm: {
-        label: evt.nativeEvent.text
-      }
+      currentLabel: evt.nativeEvent.text
+    });
+  }
+  _submitAlarm() {
+    let _alarm = {
+      time: this.state.currentTime,
+      label: this.state.currentLabel,
+      value: true,
+    }
+    fetch(URL, {
+      method: 'post',
+      body: JSON.stringify(_alarm)
     })
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+    this._refreshData()
   }
   render() {
     return (
@@ -109,8 +119,10 @@ export default class Alarms extends Component {
             dataSource={this.state.dataSource}
             renderRow={this._renderRow} />
           <AddAlarmModal
+            handleAlarmSubmit={this._submitAlarm.bind(this)}
+            handleAlarmCancel={this._cancelAlarm}
             handleMessageSubmit={this._currentMessage.bind(this)}
-            currentAlarm={this.state.currentAlarm}
+            time={this.state.currentTime}
             showTimePicker={this._showTimePicker.bind(this)}
             modalVisible={this.state.modalVisibility}
             hideModal={this._hideModal.bind(this)} />

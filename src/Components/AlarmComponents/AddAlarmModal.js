@@ -9,14 +9,13 @@ import {
   Modal,
 } from 'react-native';
 
-import s from '../../Styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import s from '../../Styles/styles';
+
 
 
 class AddAlarmModal extends Component {
-  _handleSubmit(text) {
-    this.props.handleMessageSubmit(text);
-  }
   render() {
     return (
     <View>
@@ -27,29 +26,36 @@ class AddAlarmModal extends Component {
         onRequestClose={() => {alert('Modal has been closed.');}} >
         <View style={s.alarmSetupContainer}>
           <View style={s.alarmInnerContainer}>
-            <TouchableHighlight
-              onPress={this.props.showTimePicker}>
-              <View style={s.modalRow}>
-                <Icon style={s.timePickerButton}
-                  name="clock-o" size={50} color="white"/>
-                <Text style={s.timePickerText}>
-                  {this.props.currentAlarm.time}
-                </Text>
-              </View>
-            </TouchableHighlight>
             <View style={s.modalRow}>
               <Icon style={s.messageButton}
                 name='commenting' size={50} color='white'/>
               <TextInput
                 placeholder='Add a message for this alarm...'
                 style={s.alarmMessageInput}
-                onSubmitEditing={(text) => this._handleSubmit(text)} />
+                onSubmitEditing={this.props.handleMessageSubmit} />
+            </View>
+            <TouchableHighlight
+              onPress={this.props.showTimePicker}>
+              <View style={s.modalRow}>
+                <Icon style={s.timePickerButton}
+                  name="clock-o" size={50} color="white"/>
+                <Text style={s.timePickerText}>
+                  {this.props.time}
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <View style={s.addAlarmActionButtons}>
+              <TouchableHighlight onPress={this.props.handleAlarmSubmit}>
+                <Icon style={s.submitButton}
+                  name='check' size={30} backgroundColor='#d3d3d3' color='green' />
+              </TouchableHighlight>
+              <TouchableHighlight onPress={this.props.hideModal}>
+                <Icon style={s.cancelButton}
+                  name='times' size={30} backgroundColor='#d3d3d3' color='green' />
+              </TouchableHighlight>
             </View>
           </View>
         </View>
-          <TouchableHighlight onPress={this.props.hideModal}>
-            <Text> Hide Modal </Text>
-          </TouchableHighlight>
       </Modal>
     </View>
     );
