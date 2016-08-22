@@ -44,5 +44,4 @@ class AlarmItem extends Component {
   }
 }
 
-
 module.exports = AlarmItem;

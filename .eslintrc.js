@@ -1,23 +1,15 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true
-    },
-    "sourceType": "module"
-  },
+  "extends": "standard",
   "plugins": [
+    "standard",
+    "promise",
     "react",
-    "react-native"
+    "react-native",
+    "async-await",
   ],
   "rules": {
+    "async-await/space-after-async": 2,
+    "async-await/space-after-await": 2,
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 1,
@@ -33,7 +25,7 @@ module.exports = {
     "no-unused-vars": [
       0
     ],
-    "no-console" :[
+    "no-console": [
       0
     ],
     "semi": [

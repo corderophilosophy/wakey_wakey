@@ -11,6 +11,7 @@ import {
   Image,
 } from 'react-native';
 
+import ls from 'react-native-local-storage';
 import s from '../Styles/styles';
 import Header from './AlarmComponents/Header';
 import Footer from './AlarmComponents/Footer';
@@ -18,11 +19,14 @@ import AlarmItem from './AlarmComponents/AlarmItem';
 import AddAlarmModal from './AlarmComponents/AddAlarmModal';
 
 const URL = `https://wakeywakey-4f20f.firebaseio.com/Alarms/alarms.json`;
+const STORAGE_KEY = '@ALARM:key';
 
 export default class Alarms extends Component {
   constructor(props) {
     super(props);
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    var ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
     this.state = {
       dataSource: ds.cloneWithRows([]),
       alarms: [],
@@ -30,34 +34,58 @@ export default class Alarms extends Component {
       currentHour: '',
       currentMinute: '',
       currentLabel: '',
-      value: false,
       modalVisibility: false,
     };
   }
   componentDidMount() {
-    this._refreshData();
-  }
-  _renderRow(rowData) {
-    return <AlarmItem time={rowData.time} value={false} label={rowData.label}/>;
-  }
-  _refreshData() {
-    var tempState = {};
-    fetch(URL)
-    .then((res) => res.json())
-    .then((resJSON) => {
-      let count = 0;
-      for (let key in resJSON) {
-        tempState[count] = {};
-        tempState[count].time = resJSON[key].time;
-        tempState[count].label = resJSON[key].label;
-        tempState[count].value = resJSON[key].value;
-        count += 1;
+    ls.get(STORAGE_KEY)
+    .then((data) => {
+      if (data !== null) {
+        console.log('We have data' + JSON.stringify(data));
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(data),
+          alarms: data,
+        });
+      } else {
+        console.log('No data. Awaiting data.');
       }
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(tempState)
-      });
-    })
-    .catch((error) => console.error(error));
+    }).catch((error) => console.log(error.message))
+    .done();
+  }
+
+  _renderRow(rowData) {
+    console.log('Running _renderRow');
+    return <AlarmItem time={rowData.time} value={rowData.value} label={rowData.label} key={rowData.key}/>;
+  }
+  // async _setLocalStorage() {
+  //   try {
+  //     await ls.save('ALARMS', JSON.stringify(this.state.alarms));
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+  //   console.log('Running _setLocalStorage');
+  //   var alarm = await ls.save('ALARMS', JSON.stringify(this.state.alarms))
+  //   ls.get('ALARMS').then((data) => {
+  //     console.log(`get: ${data}`);
+  //   }).catch((error) => {
+  //     console.error(error);
+  //   })
+  // }
+   _refreshData() {
+    ls.get(STORAGE_KEY)
+    .then((data) => {
+      console.log('data is: ');
+      console.log(data);
+      if (data !== null) {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(data),
+        });
+      } else {
+        throw new Error('error in datasource');
+      }
+    }).catch((error) => console.warn(error.message))
+    .done();
   }
   _showModal() {
     this.setState({
@@ -95,18 +123,23 @@ export default class Alarms extends Component {
     });
   }
   _submitAlarm() {
-    let _alarm = {
+    console.log('Submitting Alarm');
+    var tempAlarm = {
       time: this.state.currentTime,
       label: this.state.currentLabel,
       value: true,
-    }
-    fetch(URL, {
-      method: 'post',
-      body: JSON.stringify(_alarm)
-    })
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
+      key: new Date().getTime(),
+    };
+    this.setState({
+      alarms: [...this.state.alarms, [tempAlarm]]
+    });
+    console.log(this.state.alarms);
+    ls.save(STORAGE_KEY, this.state.alarms)
+    .then((data) => console.log(`Saved ${data} to disk.`))
+    .catch((error) => console.warn(error.message))
+    .done();
     this._refreshData()
+    this._hideModal();
   }
   render() {
     return (
