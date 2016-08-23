@@ -14,7 +14,7 @@ import Alarm from './MainComponents/Alarm';
 import Motd from './MainComponents/Motd';
 import Weather from './MainComponents/Weather';
 
-const WEATHER_API_KEY = 'fd606b3e7f38aebcac948c035d514b00';
+import WEATHER_API_KEY from '../../.api.js';
 const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 var _count = 0;
