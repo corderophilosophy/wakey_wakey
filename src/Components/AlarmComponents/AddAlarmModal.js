@@ -13,17 +13,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import s from '../../Styles/styles';
 
-
-
 class AddAlarmModal extends Component {
-  render() {
+  render () {
     return (
     <View>
       <Modal
         animationType="slide"
         transparent={true}
         visible={this.props.modalVisible}
-        onRequestClose={() => {alert('Modal has been closed.');}} >
+        onRequestClose={ () => { alert('Modal has been closed.');} } >
         <View style={s.alarmSetupContainer}>
           <View style={s.alarmInnerContainer}>
             <View style={s.modalRow}>

@@ -57,22 +57,7 @@ export default class Alarms extends Component {
     console.log('Running _renderRow');
     return <AlarmItem time={rowData.time} value={rowData.value} label={rowData.label} key={rowData.key}/>;
   }
-  // async _setLocalStorage() {
-  //   try {
-  //     await ls.save('ALARMS', JSON.stringify(this.state.alarms));
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-  //   console.log('Running _setLocalStorage');
-  //   var alarm = await ls.save('ALARMS', JSON.stringify(this.state.alarms))
-  //   ls.get('ALARMS').then((data) => {
-  //     console.log(`get: ${data}`);
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   })
-  // }
-   _refreshData() {
+  _refreshData() {
     ls.get(STORAGE_KEY)
     .then((data) => {
       console.log('data is: ');
